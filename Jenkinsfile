@@ -1,16 +1,11 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven'
-        jdk 'JDK17'
-    }
-
     stages {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/batra69/9-maven-goals.git'
+                git branch: 'main', url: 'https://github.com/batra69/9-maven-goals.git'
             }
         }
 
