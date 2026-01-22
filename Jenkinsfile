@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        MVN = "/opt/homebrew/bin/mvn"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -10,39 +14,39 @@ pipeline {
         }
 
         stage('Maven Validate') {
-            steps { sh 'mvn validate' }
+            steps { sh '$MVN validate' }
         }
 
         stage('Maven Compile') {
-            steps { sh 'mvn compile' }
+            steps { sh '$MVN compile' }
         }
 
         stage('Maven Test') {
-            steps { sh 'mvn test' }
+            steps { sh '$MVN test' }
         }
 
         stage('Maven Package') {
-            steps { sh 'mvn package' }
+            steps { sh '$MVN package' }
         }
 
         stage('Maven Verify') {
-            steps { sh 'mvn verify' }
+            steps { sh '$MVN verify' }
         }
 
         stage('Maven Install') {
-            steps { sh 'mvn install' }
+            steps { sh '$MVN install' }
         }
 
         stage('Maven Deploy') {
-            steps { sh 'mvn deploy -DskipTests || true' }
+            steps { sh '$MVN deploy -DskipTests || true' }
         }
 
         stage('Maven Clean') {
-            steps { sh 'mvn clean' }
+            steps { sh '$MVN clean' }
         }
 
         stage('Maven Site') {
-            steps { sh 'mvn site || true' }
+            steps { sh '$MVN site || true' }
         }
     }
 }
